@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portafolio · Proyectos</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --c1: #ff6b6b; --c2: #feca57; --c3: #48dbfb;
+      --c4: #ff9ff3; --c5: #54a0ff; --c6: #5f27cd;
+      --dark: #0f0e17;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; background: var(--dark); color: #fff; overflow-x: hidden; }
+
+    /* NAVBAR */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 999;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1.2rem 8%;
+      background: rgba(15,14,23,0.85); backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .logo {
+      font-size: 1.4rem; font-weight: 900;
+      background: linear-gradient(135deg, var(--c1), var(--c2), var(--c3));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    nav ul { list-style: none; display: flex; gap: 2rem; }
+    nav ul a { color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.9rem; font-weight: 500; transition: color .25s; }
+    nav ul a:hover, nav ul a.active { color: var(--c3); }
+
+    /* PROYECTOS */
+    section { padding: 120px 8% 7rem; }
+
+    .gradient-text {
+      background: linear-gradient(135deg, var(--c1) 0%, var(--c2) 40%, var(--c3) 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .tag {
+      display: inline-block; font-size: 0.75rem; font-weight: 700;
+      letter-spacing: 2px; text-transform: uppercase;
+      padding: 0.35rem 1rem; border-radius: 50px; margin-bottom: 1.2rem;
+      background: rgba(72,219,251,0.12); color: var(--c3);
+    }
+    h2 { font-size: clamp(2rem,5vw,3rem); font-weight:900; line-height:1.1; margin-bottom:1rem; }
+    .section-sub {
+      color: rgba(255,255,255,0.5); font-size:1.05rem;
+      max-width:560px; line-height:1.7; margin-bottom:3rem;
+    }
+
+    .projects-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(300px,1fr)); gap: 1.8rem;
+    }
+    .project-card {
+      border-radius: 20px; overflow: hidden;
+      background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);
+      transition: transform .3s, box-shadow .3s; cursor: pointer;
+    }
+    .project-card:hover { transform: translateY(-8px); box-shadow: 0 20px 50px rgba(0,0,0,0.3); }
+
+    .card-thumb {
+      height: 200px; display:flex; align-items:center; justify-content:center;
+      font-size:4rem; position:relative; overflow:hidden;
+    }
+    .t1{background:linear-gradient(135deg,#ff6b6b,#feca57)}
+    .t2{background:linear-gradient(135deg,#48dbfb,#5f27cd)}
+    .t3{background:linear-gradient(135deg,#ff9ff3,#54a0ff)}
+    .t4{background:linear-gradient(135deg,#1dd1a1,#feca57)}
+    .t5{background:linear-gradient(135deg,#ff6b6b,#5f27cd)}
+    .t6{background:linear-gradient(135deg,#54a0ff,#1dd1a1)}
+
+    .card-body { padding: 1.5rem; }
+    .card-tags { display:flex; gap:0.4rem; flex-wrap:wrap; margin-bottom:0.8rem; }
+    .card-tag {
+      font-size:0.7rem; font-weight:700; letter-spacing:1px;
+      text-transform:uppercase; padding:0.2rem 0.7rem; border-radius:50px;
+      background:rgba(255,255,255,0.08); color:rgba(255,255,255,0.6);
+    }
+    .card-title { font-size:1.15rem; font-weight:700; margin-bottom:0.5rem; }
+    .card-desc { font-size:0.87rem; color:rgba(255,255,255,0.45); line-height:1.65; margin-bottom:1.2rem; }
+    .card-link {
+      font-size:0.85rem; font-weight:700; color:var(--c3);
+      text-decoration:none; display:inline-flex; align-items:center;
+      gap:0.4rem; transition:gap .2s;
+    }
+    .card-link:hover { gap: 0.8rem; }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="logo">Carlos.dev</div>
+    <ul>
+      <li><a href="hero.html">Inicio</a></li>
+      <li><a href="sobre.html">Sobre mí</a></li>
+      <li><a href="proyectos.html" class="active">Proyectos</a></li>
+      <li><a href="contacto.html">Contacto</a></li>
+    </ul>
+  </nav>
+
+  <section>
+    <div class="tag">Proyectos</div>
+    <h2>Trabajo <span class="gradient-text">seleccionado</span></h2>
+    <p class="section-sub">
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam erat
+      volutpat. Nam dapibus nisl vitae elit fringilla rutrum.
+    </p>
+
+    <div class="projects-grid">
+      <div class="project-card">
+        <div class="card-thumb t1">🛒</div>
+        <div class="card-body">
+          <div class="card-tags"><span class="card-tag">E-Commerce</span><span class="card-tag">React</span></div>
+          <h3 class="card-title">Lorem Shop Platform</h3>
+          <p class="card-desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce vel lorem eget arcu commodo condimentum id at orci.</p>
+          <a href="#" class="card-link">Ver proyecto →</a>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="card-thumb t2">📊</div>
+        <div class="card-body">
+          <div class="card-tags"><span class="card-tag">Dashboard</span><span class="card-tag">Data Viz</span></div>
+          <h3 class="card-title">Analytics Dashboard</h3>
+          <p class="card-desc">Pellentesque habitant morbi tristique senectus. Nunc condimentum velit ac tortor aliquam, vel molestie leo suscipit.</p>
+          <a href="#" class="card-link">Ver proyecto →</a>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="card-thumb t3">🎨</div>
+        <div class="card-body">
+          <div class="card-tags"><span class="card-tag">Branding</span><span class="card-tag">Figma</span></div>
+          <h3 class="card-title">Ipsum Brand Identity</h3>
+          <p class="card-desc">Donec fringilla lorem sit amet eros fermentum, vel posuere urna dignissim. Sed tempus velit vel diam dignissim.</p>
+          <a href="#" class="card-link">Ver proyecto →</a>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="card-thumb t4">📱</div>
+        <div class="card-body">
+          <div class="card-tags"><span class="card-tag">App Móvil</span><span class="card-tag">UI/UX</span></div>
+          <h3 class="card-title">Lorem Mobile App</h3>
+          <p class="card-desc">Aliquam erat volutpat. Nam dapibus nisl vitae elit fringilla rutrum. Aenean massa lorem porta ut libero quis pretium.</p>
+          <a href="#" class="card-link">Ver proyecto →</a>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="card-thumb t5">🔒</div>
+        <div class="card-body">
+          <div class="card-tags"><span class="card-tag">SaaS</span><span class="card-tag">Node.js</span></div>
+          <h3 class="card-title">Ipsum Auth System</h3>
+          <p class="card-desc">Cras ornare tristique elit. Vivamus vestibulum ntulla nec ante. Praesent eu porta felis lorem ipsum volutpat.</p>
+          <a href="#" class="card-link">Ver proyecto →</a>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="card-thumb t6">🌐</div>
+        <div class="card-body">
+          <div class="card-tags"><span class="card-tag">Web 3D</span><span class="card-tag">Three.js</span></div>
+          <h3 class="card-title">Lorem 3D Experience</h3>
+          <p class="card-desc">Fusce malesuada enim vel mi lacinia. Integer condimentum velit in metus fermentum, vel sodales arcu varius nisl.</p>
+          <a href="#" class="card-link">Ver proyecto →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</body>
+</html>
