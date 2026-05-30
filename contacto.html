@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portafolio · Contacto</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --c1: #ff6b6b; --c2: #feca57; --c3: #48dbfb;
+      --c4: #ff9ff3; --c5: #54a0ff; --c6: #5f27cd;
+      --dark: #0f0e17; --mid: #1a1a2e;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; background: var(--mid); color: #fff; overflow-x: hidden; min-height: 100vh; }
+
+    /* NAVBAR */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 999;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1.2rem 8%;
+      background: rgba(15,14,23,0.85); backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .logo {
+      font-size: 1.4rem; font-weight: 900;
+      background: linear-gradient(135deg, var(--c1), var(--c2), var(--c3));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    nav ul { list-style: none; display: flex; gap: 2rem; }
+    nav ul a { color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.9rem; font-weight: 500; transition: color .25s; }
+    nav ul a:hover, nav ul a.active { color: var(--c3); }
+
+    /* CONTACTO */
+    section {
+      min-height: 100vh; display: flex; align-items: center;
+      padding: 120px 8% 5rem; position: relative; overflow: hidden;
+    }
+    section::after {
+      content: ''; position: absolute; bottom: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--c5), var(--c4), var(--c1), var(--c2));
+    }
+
+    .contact-blob {
+      position: absolute; width: 600px; height: 600px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(84,160,255,0.12), transparent 70%);
+      top: -200px; right: -200px; pointer-events: none;
+    }
+
+    .gradient-text {
+      background: linear-gradient(135deg, var(--c1) 0%, var(--c2) 40%, var(--c3) 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .tag {
+      display: inline-block; font-size: 0.75rem; font-weight: 700;
+      letter-spacing: 2px; text-transform: uppercase;
+      padding: 0.35rem 1rem; border-radius: 50px; margin-bottom: 1.2rem;
+      background: rgba(255,159,243,0.15); color: var(--c4);
+    }
+
+    .contact-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 5rem; align-items: start; position: relative; z-index: 1; width: 100%;
+    }
+
+    h2 { font-size: clamp(2rem,5vw,3rem); font-weight:900; line-height:1.1; margin-bottom:1rem; }
+    .section-sub {
+      color: rgba(255,255,255,0.5); font-size:1.05rem;
+      max-width:560px; line-height:1.7; margin-bottom:2.5rem;
+    }
+
+    .contact-info-item { display:flex; align-items:center; gap:1rem; margin-bottom:1.5rem; }
+    .contact-icon {
+      width:48px; height:48px; border-radius:12px;
+      display:flex; align-items:center; justify-content:center;
+      font-size:1.3rem; flex-shrink:0;
+    }
+    .contact-text strong {
+      font-size:0.85rem; color:rgba(255,255,255,0.4); font-weight:600;
+      text-transform:uppercase; letter-spacing:1px; display:block; margin-bottom:0.2rem;
+    }
+    .contact-text span { font-size:1rem; font-weight:600; }
+
+    /* FORM */
+    .form-group { margin-bottom: 1.3rem; }
+    .form-group label {
+      display:block; font-size:0.82rem; font-weight:600;
+      color:rgba(255,255,255,0.5); text-transform:uppercase;
+      letter-spacing:1px; margin-bottom:0.5rem;
+    }
+    .form-group input,
+    .form-group textarea {
+      width:100%; background:rgba(255,255,255,0.05);
+      border:1px solid rgba(255,255,255,0.1); border-radius:12px;
+      padding:0.85rem 1.1rem; color:#fff; font-family:inherit;
+      font-size:0.95rem; outline:none;
+      transition:border-color .2s, background .2s; resize:none;
+    }
+    .form-group input:focus,
+    .form-group textarea:focus { border-color:var(--c3); background:rgba(72,219,251,0.06); }
+    .form-group textarea { height: 130px; }
+
+    .btn-primary {
+      display:inline-flex; align-items:center; justify-content:center; gap:0.5rem;
+      width:100%; padding:0.85rem 2rem; border-radius:12px;
+      background:linear-gradient(135deg,var(--c1),var(--c4)); color:#fff;
+      font-size:0.95rem; font-weight:700; cursor:pointer;
+      border:none; transition:transform .2s, box-shadow .2s;
+      box-shadow:0 8px 30px rgba(255,107,107,0.4); font-family:inherit;
+    }
+    .btn-primary:hover { transform:translateY(-3px); box-shadow:0 12px 40px rgba(255,107,107,0.6); }
+    .btn-primary:disabled { opacity:0.6; cursor:not-allowed; transform:none; }
+
+    /* Mensajes de estado */
+    .status-msg {
+      margin-top: 1rem; padding: 0.85rem 1.1rem;
+      border-radius: 12px; font-size: 0.88rem; font-weight: 600;
+      display: none;
+    }
+    .status-msg.error {
+      background: rgba(255,107,107,0.12);
+      border: 1px solid rgba(255,107,107,0.3);
+      color: #ff9999;
+    }
+    .status-msg.success {
+      background: rgba(72,219,251,0.12);
+      border: 1px solid rgba(72,219,251,0.3);
+      color: var(--c3);
+    }
+
+    /* Pantalla éxito */
+    .success-screen {
+      display: none; text-align: center; padding: 2rem 0;
+    }
+    .success-screen .icon { font-size: 3rem; margin-bottom: 1rem; }
+    .success-screen h3 { font-size: 1.5rem; font-weight: 900; margin-bottom: 0.5rem; }
+    .success-screen p { color: rgba(255,255,255,0.5); line-height: 1.6; }
+    .btn-reset {
+      margin-top: 1.5rem; background: transparent;
+      border: 1px solid rgba(255,255,255,0.15); color: rgba(255,255,255,0.5);
+      padding: 0.7rem 1.5rem; border-radius: 10px;
+      font-family: inherit; font-size: 0.85rem; cursor: pointer;
+      transition: border-color .2s, color .2s;
+    }
+    .btn-reset:hover { border-color: var(--c3); color: var(--c3); }
+
+    /* FOOTER */
+    footer {
+      background: var(--dark); text-align:center; padding:2rem 8%;
+      border-top:1px solid rgba(255,255,255,0.06);
+      font-size:0.85rem; color:rgba(255,255,255,0.3);
+    }
+    footer span { color: var(--c1); }
+
+    @media (max-width: 768px) {
+      .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="logo">Carlos.dev</div>
+    <ul>
+      <li><a href="index.html">Inicio</a></li>
+      <li><a href="sobre.html">Sobre mí</a></li>
+      <li><a href="proyectos.html">Proyectos</a></li>
+      <li><a href="contacto.html" class="active">Contacto</a></li>
+    </ul>
+  </nav>
+
+  <section>
+    <div class="contact-blob"></div>
+    <div class="contact-grid">
+      <div>
+        <div class="tag">Contacto</div>
+        <h2>¡Hablemos y<br/><span class="gradient-text">creemos algo</span> juntos!</h2>
+        <p class="section-sub">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in dui
+          mauris. Vivamus hendrerit arcu sed erat molestie vehicula.
+        </p>
+
+        <div class="contact-info-item">
+          <div class="contact-icon" style="background:rgba(255,107,107,0.15);">✉️</div>
+          <div class="contact-text">
+            <strong>Email</strong><span>hola@loremipsum.com</span>
+          </div>
+        </div>
+
+        <div class="contact-info-item">
+          <div class="contact-icon" style="background:rgba(72,219,251,0.15);">📍</div>
+          <div class="contact-text">
+            <strong>Ubicación</strong><span>Ciudad de México, MX</span>
+          </div>
+        </div>
+
+        <div class="contact-info-item">
+          <div class="contact-icon" style="background:rgba(84,160,255,0.15);">💼</div>
+          <div class="contact-text">
+            <strong>Disponibilidad</strong><span>Freelance &amp; Full-time</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- FORMULARIO con Web3Forms -->
+      <div>
+        <form id="contactForm">
+          <input type="hidden" name="access_key" value="9167ace5-61a2-42cf-898b-e28d7edfe2c3" />
+          <input type="hidden" name="subject" value="[Web] Nuevo mensaje de contacto" />
+          <input type="hidden" name="from_name" value="Portafolio — Carlos Jiménez" />
+          <input type="hidden" name="redirect" value="false" />
+
+          <div class="form-group">
+            <label>Nombre</label>
+            <input type="text" name="name" placeholder="Tu nombre completo" required />
+          </div>
+          <div class="form-group">
+            <label>Email</label>
+            <input type="email" name="email" placeholder="correo@ejemplo.com" required />
+          </div>
+          <div class="form-group">
+            <label>Mensaje</label>
+            <textarea name="message" placeholder="Cuéntame sobre tu proyecto…" required></textarea>
+          </div>
+          <button type="submit" class="btn-primary" id="submitBtn">Enviar mensaje 🚀</button>
+          <div class="status-msg error" id="errorMsg">Algo salió mal. Por favor intenta de nuevo.</div>
+        </form>
+
+        <!-- Pantalla de éxito -->
+        <div class="success-screen" id="successScreen">
+          <div class="icon">🚀</div>
+          <h3>¡Mensaje enviado!</h3>
+          <p>Gracias por escribirme.<br/>Te responderé lo antes posible.</p>
+          <button class="btn-reset" onclick="resetForm()">Enviar otro mensaje</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>Hecho con <span>♥</span> por Carlos Jiménez &nbsp;·&nbsp; 2026</footer>
+
+  <script>
+    const form          = document.getElementById('contactForm');
+    const submitBtn     = document.getElementById('submitBtn');
+    const errorMsg      = document.getElementById('errorMsg');
+    const successScreen = document.getElementById('successScreen');
+
+    form.addEventListener('submit', async function(e) {
+      e.preventDefault();
+      errorMsg.style.display = 'none';
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Enviando…';
+
+      try {
+        const response = await fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          body: new FormData(form)
+        });
+        const result = await response.json();
+
+        if (result.success) {
+          form.style.display = 'none';
+          successScreen.style.display = 'block';
+        } else {
+          throw new Error(result.message || 'Error desconocido');
+        }
+      } catch (err) {
+        errorMsg.style.display = 'block';
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = 'Enviar mensaje 🚀';
+      }
+    });
+
+    function resetForm() {
+      form.reset();
+      form.style.display = 'block';
+      successScreen.style.display = 'none';
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = 'Enviar mensaje 🚀';
+    }
+  </script>
+</body>
+</html>
